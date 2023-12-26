@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Successful Deletion</title>
+</head>
+<body>
+<p><h3 th:text="${'The user with ID: ' + id + ' has been successfully deleted.'}">info</h3></p>
+<p><a th:href="@{/users/list}">Go to the user's list</a></p>
+<p><a th:href="@{/users/create}">Create a new user</a></p>
+</body>
+</html>

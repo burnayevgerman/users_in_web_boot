@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Info</title>
+</head>
+<body>
+<div>
+    <p><h3 th:text="${'ID: ' + user.getId()}">id</h3></p>
+    <p><h3 th:text="${'Username: ' + user.getUsername()}">username</h3></p>
+    <p><h3 th:text="${'Phone Number: ' + user.getPhoneNumber()}">phone_number</h3></p>
+    <p><h3 th:text="${'E-mail: ' + user.getEmail()}">e-mail</h3></p>
+</div>
+<div>
+    <p><a th:href="@{/users/edit-user(id=${user.getId()})}">Edit the user</a></p>
+    <p><a th:href="@{/users/create}">Create a new user</a></p>
+    <p><a th:href="@{/users/list}">Go to the user's list</a></p>
+</div>
+</body>
+</html>

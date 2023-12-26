@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation Of Deletion</title>
+    <script>
+        function answerNo(id) {
+            window.location.href = `/users/edit-user?id=${id}`;
+        }
+    </script>
+</head>
+<body>
+<form th:method="POST" th:action="@{/users/delete-user}">
+    <p><h3 th:text="${'Do you really want to delete a user with ID: ' + id + '?'}">question</h3></p>
+    <p>
+        <input type="hidden" th:name="id" th:value="${id}" />
+        <input type="submit" value="Yes" />
+        <input type="button" value="No" th:onclick="'answerNo(' + ${id} + ')'" />
+<!--        <a id="refIfNo" style="display: none" th:href="@{/users/edit-user(id=${id})}">hidden-ref</a>-->
+    </p>
+</form>
+</body>
+</html>

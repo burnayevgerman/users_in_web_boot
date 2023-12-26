@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/users/create}" th:object="${user}">
+    <p>
+        <label for="username">Username</label>
+        <input id="username" type="text" th:field="*{username}" />
+        <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" >ErrorMessage</div>
+    </p>
+    <p>
+        <label for="phone">Phone Number</label>
+        <input id="phone" type="tel" th:field="*{phoneNumber}" />
+        <div style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" >ErrorMessage</div>
+    </p>
+    <p>
+        <label for="email">E-mail</label>
+        <input id="email" type="text" th:field="*{email}" />
+        <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" >ErrorMessage</div>
+    </p>
+    <p><input type="submit" value="Create" /></p>
+</form>
+<a th:href="@{/users/list}">Go to the user's list</a>
+</body>
+</html>
