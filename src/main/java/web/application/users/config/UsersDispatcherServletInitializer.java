@@ -4,6 +4,7 @@ import jakarta.servlet.FilterRegistration;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class UsersDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -30,5 +31,9 @@ public class UsersDispatcherServletInitializer extends AbstractAnnotationConfigD
         encodingFilter.setInitParameter("encoding", "UTF-8");
         encodingFilter.setInitParameter("forceEncoding", "true");
         encodingFilter.addMappingForUrlPatterns(null, true, "/*");
+
+        FilterRegistration.Dynamic hiddenRequestsFilter
+                = servletContext.addFilter("hiddenHttpMethodFilter", HiddenHttpMethodFilter.class);
+        hiddenRequestsFilter.addMappingForUrlPatterns(null, false, "/*");
     }
 }

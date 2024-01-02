@@ -13,19 +13,16 @@ import web.application.users.models.User;
 
 import java.util.List;
 
-@Transactional
 @Repository
 public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional(readOnly = true)
     @Override
     public List<User> getUsers() {
         return entityManager.createQuery("FROM User", User.class).getResultList();
     }
 
-    @Transactional(readOnly = true)
     @Override
     public User getUserById(long id) {
         return entityManager.find(User.class, id);
@@ -37,7 +34,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUserById(long id, User user) {
+        user.setId(id);
         entityManager.merge(user);
     }
 

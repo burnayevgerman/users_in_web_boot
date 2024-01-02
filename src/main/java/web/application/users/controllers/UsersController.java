@@ -53,13 +53,14 @@ public class UsersController {
         return "edit_user";
     }
 
-    @PostMapping("/edit-user")
-    public String editUser(@ModelAttribute("user") @Valid User user, BindingResult br) {
+    @PutMapping("/edit-user")
+    public String editUser(@ModelAttribute("user") @Valid User user, @RequestParam("id") long id, BindingResult br) {
         if (br.hasErrors()) {
             return "edit_user";
         }
 
-        service.updateUser(user);
+
+        service.updateUserById(id, user);
         return "user_info";
     }
 
@@ -69,7 +70,7 @@ public class UsersController {
         return "delete_user";
     }
 
-    @PostMapping("/delete-user")
+    @DeleteMapping("/delete-user")
     public String deleteUser(@ModelAttribute("id") long id) {
         service.removeUserById(id);
         return "deletion_completed";
