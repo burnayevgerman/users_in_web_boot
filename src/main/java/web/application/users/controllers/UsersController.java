@@ -54,11 +54,10 @@ public class UsersController {
     }
 
     @PutMapping("/edit-user")
-    public String editUser(@ModelAttribute("user") @Valid User user, @RequestParam("id") long id, BindingResult br) {
+    public String editUser(@ModelAttribute("user") @Valid User user, @ModelAttribute("id") long id, BindingResult br) {
         if (br.hasErrors()) {
             return "edit_user";
         }
-
 
         service.updateUserById(id, user);
         return "user_info";
